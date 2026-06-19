@@ -35,6 +35,8 @@ Do not delete user audio automatically. The cleanup command may remove stale cac
 
 If the plugin should work immediately after download, place distributable `.wav` or `.mp3` files under `assets/bundled-audio/` and add matching manifest items with `bundled: true`. On `init` or first playback, `voicectl.py` copies bundled audio into the writable data directory and records the file hash. Only bundle audio that the user has permission to redistribute.
 
+The bundled 温柔 JK set contains five mapped events: `task_done.wav` for `done`, `task_failed.wav` for `failed`, `need_input.wav` for `need_input`, `audioattention.wav` for `attention`, and `checkpoint.wav` for `checkpoint`. Use the manifest `text`, `tags`, and `useWhen` fields to decide which line represents which situation.
+
 ## Hook Behavior
 
 The plugin includes `hooks/hooks.json` with a `Stop` hook. When the plugin is enabled and the hook is trusted, Codex runs `voicectl.py hook-stop` after each assistant response. The hook classifies the final assistant message into an event, selects the highest-priority enabled matching audio item, updates the audio path cache, and plays it locally. If no audio exists, it falls back to a Windows system sound.

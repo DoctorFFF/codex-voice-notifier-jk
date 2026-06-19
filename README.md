@@ -20,7 +20,15 @@ This plugin is loaded by the local Codex client. Whether your Codex client is au
 
 ## Bundled Audio
 
-Yes, private or custom audio can be included in the package if you want the plugin to be open-box usable.
+Yes, private or custom audio can be included in the package if you want the plugin to be open-box usable. This repository includes the current 温柔 JK notification set:
+
+| Event | File | Spoken Text |
+| --- | --- | --- |
+| `done` | `assets/bundled-audio/task_done.wav` | 博士，任务完成了。 |
+| `failed` | `assets/bundled-audio/task_failed.wav` | 博士，任务运行失败了，我已经停下来了，需要你看一下。 |
+| `need_input` | `assets/bundled-audio/need_input.wav` | 博士，我需要你做个决定，回来选一下吧。 |
+| `attention` | `assets/bundled-audio/audioattention.wav` | 博士，这里有一件事需要你注意。 |
+| `checkpoint` | `assets/bundled-audio/checkpoint.wav` | 博士，阶段性结果已经准备好了。 |
 
 Put redistributable audio files here:
 
@@ -38,11 +46,11 @@ Bundled items should use:
 
 ```json
 {
-  "id": "done_jk_default",
+  "id": "task_done_jk",
   "event": "done",
-  "file": "done_jk_default.wav",
-  "bundleFile": "done_jk_default.wav",
-  "text": "博士，任务完成了，可以回来看看了。",
+  "file": "task_done.wav",
+  "bundleFile": "task_done.wav",
+  "text": "博士，任务完成了。",
   "speaker": "温柔 JK",
   "emotion": "warm",
   "style": "gentle-jk",
@@ -105,9 +113,9 @@ Add your MiniMax 温柔 JK completion audio:
 ```powershell
 D:\python312\python.exe C:\Users\14187\plugins\codex-voice-notifier-jk\scripts\voicectl.py add `
   --event done `
-  --file D:\Downloads\done_jk_default.wav `
-  --id done_jk_default `
-  --text "博士，任务完成了，可以回来看看了。" `
+  --file D:\Downloads\task_done.wav `
+  --id task_done_jk `
+  --text "博士，任务完成了。" `
   --speaker "温柔 JK" `
   --emotion warm `
   --style gentle-jk `
@@ -133,7 +141,7 @@ D:\python312\python.exe C:\Users\14187\plugins\codex-voice-notifier-jk\scripts\v
 
 | Event | Suggested Text | Voice | Use When |
 | --- | --- | --- | --- |
-| `done` | 博士，任务完成了，可以回来看看了。 | 温柔 JK | Normal completion |
+| `done` | 博士，任务完成了。 | 温柔 JK | Normal completion |
 | `failed` | 博士，任务运行失败了，我已经停下来了，需要你看一下。 | 温柔 JK, slightly concerned | Unrecovered failure |
 | `need_input` | 博士，我需要你做个决定，回来选一下吧。 | 温柔 JK, inviting | User decision required |
 | `attention` | 博士，这里有一件事需要你注意。 | 温柔 JK, serious but soft | Warning or important finding |
@@ -147,10 +155,10 @@ Audio items live in `audio-manifest.json` under the plugin data directory:
 
 ```json
 {
-  "id": "done_jk_default",
+  "id": "task_done_jk",
   "event": "done",
-  "file": "done_jk_default.wav",
-  "text": "博士，任务完成了，可以回来看看了。",
+  "file": "task_done.wav",
+  "text": "博士，任务完成了。",
   "speaker": "温柔 JK",
   "emotion": "warm",
   "style": "gentle-jk",

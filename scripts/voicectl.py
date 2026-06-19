@@ -88,7 +88,95 @@ def ensure_layout() -> None:
                     "items": [],
                 },
             )
+    merge_default_manifest()
     seed_bundled_audio()
+
+
+def merge_default_manifest() -> None:
+    if not DEFAULT_MANIFEST.exists() or not MANIFEST_PATH.exists():
+        return
+
+    defaults = read_json(DEFAULT_MANIFEST, {})
+    manifest = read_json(MANIFEST_PATH, {})
+    changed = False
+
+    for key in ("schemaVersion", "plugin", "defaultEvent", "audioRoot", "voiceDirection"):
+        if key in defaults and manifest.get(key) != defaults[key]:
+            if key in ("schemaVersion", "plugin", "voiceDirection") or key not in manifest:
+                manifest[key] = defaults[key]
+                changed = True
+
+    for key in ("events", "selection", "cleanupPolicy"):
+        default_value = defaults.get(key)
+        if not isinstance(default_value, dict):
+            continue
+        current_value = manifest.setdefault(key, {})
+        if not isinstance(current_value, dict):
+            manifest[key] = default_value
+            changed = True
+            continue
+        for child_key, child_value in default_value.items():
+            if child_key not in current_value:
+                current_value[child_key] = child_value
+                changed = True
+
+    manifest.setdefault("items", [])
+    default_item_ids = {
+        item.get("id")
+        for item in defaults.get("items") or []
+        if isinstance(item, dict) and item.get("id")
+    }
+    retained_items = []
+    for item in manifest["items"]:
+        if not isinstance(item, dict):
+            continue
+        item_id = item.get("id")
+        bundle_name = str(item.get("bundleFile") or item.get("file") or "").strip()
+        source = (BUNDLED_AUDIO_ROOT / Path(bundle_name).name).resolve() if bundle_name else None
+        obsolete_bundle = (
+            bool(item.get("bundled"))
+            and item_id not in default_item_ids
+            and (source is None or not source.exists())
+        )
+        if obsolete_bundle:
+            changed = True
+            continue
+        retained_items.append(item)
+
+    if len(retained_items) != len(manifest["items"]):
+        manifest["items"] = retained_items
+
+    existing_by_id = {
+        item.get("id"): item
+        for item in manifest["items"]
+        if isinstance(item, dict) and item.get("id")
+    }
+
+    for default_item in defaults.get("items") or []:
+        if not isinstance(default_item, dict) or not default_item.get("id"):
+            continue
+
+        item_id = default_item["id"]
+        existing = existing_by_id.get(item_id)
+        if existing is None:
+            manifest["items"].append(default_item)
+            existing_by_id[item_id] = default_item
+            changed = True
+            continue
+
+        if not existing.get("bundled"):
+            continue
+
+        preserve_keys = {"enabled", "priority"}
+        for key, value in default_item.items():
+            if key in preserve_keys and key in existing:
+                continue
+            if existing.get(key) != value:
+                existing[key] = value
+                changed = True
+
+    if changed:
+        save_manifest(manifest)
 
 
 def seed_bundled_audio() -> None:
