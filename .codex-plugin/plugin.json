@@ -1,0 +1,38 @@
+{
+  "name": "codex-voice-notifier-jk",
+  "version": "0.1.0",
+  "description": "Play local, extensible 温柔 JK voice notifications when Codex finishes a response.",
+  "author": {
+    "name": "DoctorFFF",
+    "email": "1418752382@qq.com",
+    "url": "https://github.com/DoctorFFF"
+  },
+  "repository": "https://github.com/DoctorFFF/codex-voice-notifier-jk",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "voice",
+    "notification",
+    "tts",
+    "hooks",
+    "jk"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Voice Notifier JK",
+    "shortDescription": "Play 温柔 JK voice prompts after Codex responses.",
+    "longDescription": "Codex Voice Notifier JK adds an extensible audio manifest, bundled default audio support, local playback scripts, and a Stop hook for emotional 温柔 JK voice prompts such as task completion, failure, and user-input reminders.",
+    "developerName": "DoctorFFF",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Set up 温柔 JK voice notifications.",
+      "Add a new JK completion voice line.",
+      "List my configured voice prompts."
+    ],
+    "brandColor": "#6D5EF6"
+  }
+}

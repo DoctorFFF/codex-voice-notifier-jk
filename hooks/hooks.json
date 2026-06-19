@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/scripts/voicectl.py\" hook-stop",
+            "commandWindows": "cmd /c if exist D:\\python312\\python.exe (D:\\python312\\python.exe \"%PLUGIN_ROOT%\\scripts\\voicectl.py\" hook-stop) else (python \"%PLUGIN_ROOT%\\scripts\\voicectl.py\" hook-stop)",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

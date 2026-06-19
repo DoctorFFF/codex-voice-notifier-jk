@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "plugin": "codex-voice-notifier-jk",
+  "defaultEvent": "done",
+  "audioRoot": "audio",
+  "voiceDirection": "Address the user as 博士. The default voice style is 温柔 JK: gentle, youthful, bright, caring, emotional, natural, and clear. Avoid flat mechanical narration and exaggerated acting.",
+  "events": {
+    "done": {
+      "description": "A substantive Codex response or task finished successfully."
+    },
+    "failed": {
+      "description": "Codex reports a failed command, blocked task, or unrecovered error."
+    },
+    "need_input": {
+      "description": "Codex needs the user to make a choice or provide missing information."
+    },
+    "attention": {
+      "description": "Codex has an important warning or notable finding."
+    },
+    "checkpoint": {
+      "description": "Codex produced a useful intermediate result."
+    }
+  },
+  "selection": {
+    "strategy": "priority",
+    "fallbackSystemSound": "Asterisk"
+  },
+  "cleanupPolicy": {
+    "neverDeleteUserAudioAutomatically": true,
+    "transcodedCacheTtlDays": 7,
+    "deleteOrphansOnlyWhenExplicit": true
+  },
+  "items": [
+    {
+      "id": "done_jk_default",
+      "event": "done",
+      "file": "done_jk_default.wav",
+      "bundleFile": "done_jk_default.wav",
+      "text": "博士，任务完成了，可以回来看看了。",
+      "speaker": "温柔 JK",
+      "emotion": "warm",
+      "style": "gentle-jk",
+      "tags": [
+        "done",
+        "jk",
+        "warm",
+        "doctor",
+        "bundled"
+      ],
+      "useWhen": "Codex 完成一次正常任务或给出最终结果",
+      "enabled": true,
+      "priority": 100,
+      "sha256": "",
+      "bundled": true,
+      "createdAt": "2026-06-19T00:00:00Z"
+    }
+  ]
+}
