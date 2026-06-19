@@ -13,7 +13,17 @@ from pathlib import Path
 from typing import Any
 
 
-EVENTS = ("done", "failed", "need_input", "attention", "checkpoint")
+EVENTS = (
+    "done",
+    "failed",
+    "need_input",
+    "attention",
+    "checkpoint",
+    "clarify",
+    "understood",
+    "encourage",
+    "praise",
+)
 SUPPORTED_EXTENSIONS = {".wav", ".mp3", ".m4a", ".aac", ".wma"}
 PLUGIN_ROOT = Path(os.environ.get("PLUGIN_ROOT", Path(__file__).resolve().parents[1])).resolve()
 PLUGIN_DATA = Path(
@@ -383,9 +393,21 @@ def classify_event(text: str) -> str:
     need_input_keywords = ("need your input", "choose", "which", "confirm", "需要你", "请选择", "选一下", "确认", "决定")
     checkpoint_keywords = ("checkpoint", "intermediate", "阶段", "阶段性", "中间结果")
     attention_keywords = ("warning", "risk", "注意", "风险", "警告")
+    clarify_keywords = ("clarify", "discuss", "talk through", "再沟通", "沟通一下", "澄清", "聊一下", "确认方向")
+    understood_keywords = ("understood", "got it", "i understand", "明白你的想法", "我明白", "理解你的想法", "收到")
+    encourage_keywords = ("don't be discouraged", "try again", "retry", "不要沮丧", "再来试试", "重试", "继续试")
+    praise_keywords = ("great idea", "excellent idea", "brilliant", "太棒", "好想法", "很棒", "漂亮")
 
     if any(keyword in lowered for keyword in failed_keywords):
         return "failed"
+    if any(keyword in lowered for keyword in encourage_keywords):
+        return "encourage"
+    if any(keyword in lowered for keyword in praise_keywords):
+        return "praise"
+    if any(keyword in lowered for keyword in clarify_keywords):
+        return "clarify"
+    if any(keyword in lowered for keyword in understood_keywords):
+        return "understood"
     if any(keyword in lowered for keyword in need_input_keywords):
         return "need_input"
     if any(keyword in lowered for keyword in checkpoint_keywords):

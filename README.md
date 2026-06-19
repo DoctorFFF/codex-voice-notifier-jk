@@ -8,7 +8,7 @@ The bundled voice style is **温柔 JK 的声音**: gentle, bright, caring, emot
 
 ### What You Get
 
-This plugin ships with five ready-to-use voice prompts:
+This plugin ships with nine ready-to-use voice prompts: five task-state prompts and four conversational feedback prompts.
 
 | Event | Audio | Spoken Text |
 | --- | --- | --- |
@@ -17,6 +17,10 @@ This plugin ships with five ready-to-use voice prompts:
 | Need input | `need_input.wav` | 博士，我需要你做个决定，回来选一下吧。 |
 | Attention | `audioattention.wav` | 博士，这里有一件事需要你注意。 |
 | Checkpoint | `checkpoint.wav` | 博士，阶段性结果已经准备好了。 |
+| Clarify | `博士，我想...我们还需要再沟通一下.wav` | 博士，我想...我们还需要再沟通一下 |
+| Understood | `博士，我已经明白你的想法了.wav` | 博士，我已经明白你的想法了 |
+| Encourage | `博士，不要沮丧，我们再来试试.wav` | 博士，不要沮丧，我们再来试试 |
+| Praise | `博士，你的想法太棒了。.wav` | 博士，你的想法太棒了。 |
 
 The audio files are bundled in:
 
@@ -151,6 +155,10 @@ Use these event names exactly:
 | `need_input` | User must choose, confirm, or provide missing info |
 | `attention` | Important warning, risk, or notable finding |
 | `checkpoint` | Useful intermediate or staged result |
+| `clarify` | Need more discussion or clarification |
+| `understood` | Acknowledge that Codex understands the user's idea |
+| `encourage` | Encourage the user after a setback or retry |
+| `praise` | Positively acknowledge a strong user idea |
 
 ### Bundled Mapping
 
@@ -161,6 +169,10 @@ Use these event names exactly:
 | `need_input` | `need_input_jk` | `need_input.wav` |
 | `attention` | `attention_jk` | `audioattention.wav` |
 | `checkpoint` | `checkpoint_jk` | `checkpoint.wav` |
+| `clarify` | `clarify_jk` | `博士，我想...我们还需要再沟通一下.wav` |
+| `understood` | `understood_jk` | `博士，我已经明白你的想法了.wav` |
+| `encourage` | `encourage_jk` | `博士，不要沮丧，我们再来试试.wav` |
+| `praise` | `praise_jk` | `博士，你的想法太棒了。.wav` |
 
 ### Commands
 

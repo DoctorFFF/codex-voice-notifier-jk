@@ -1,6 +1,6 @@
 ---
 name: voice-notifications
-description: Use when the user wants Codex to play, configure, add, list, select, cache, or clean up local voice notification audio, especially the codex-voice-notifier-jk plugin with 温柔 JK voice prompts for task-complete, failure, need-input, attention, and checkpoint events. Also use when maintaining the plugin or explaining its Stop-hook behavior.
+description: Use when the user wants Codex to play, configure, add, list, select, cache, or clean up local voice notification audio, especially the codex-voice-notifier-jk plugin with 温柔 JK voice prompts for task-complete, failure, need-input, attention, checkpoint, clarify, understood, encourage, and praise events. Also use when maintaining the plugin or explaining its Stop-hook behavior.
 ---
 
 # Voice Notifications
@@ -22,7 +22,7 @@ Address the user as `博士` when proposing or generating spoken text unless the
 The manifest is `audio-manifest.json` in the writable data directory. Each item should include:
 
 - `id`: stable identifier
-- `event`: `done`, `failed`, `need_input`, `attention`, or `checkpoint`
+- `event`: `done`, `failed`, `need_input`, `attention`, `checkpoint`, `clarify`, `understood`, `encourage`, or `praise`
 - `file`: audio file under the manifest `audioRoot`
 - `text`: exact spoken content
 - `speaker`, `emotion`, `style`, `tags`, and `useWhen`
@@ -35,7 +35,7 @@ Do not delete user audio automatically. The cleanup command may remove stale cac
 
 If the plugin should work immediately after download, place distributable `.wav` or `.mp3` files under `assets/bundled-audio/` and add matching manifest items with `bundled: true`. On `init` or first playback, `voicectl.py` copies bundled audio into the writable data directory and records the file hash. Only bundle audio that the user has permission to redistribute.
 
-The bundled 温柔 JK set contains five mapped events: `task_done.wav` for `done`, `task_failed.wav` for `failed`, `need_input.wav` for `need_input`, `audioattention.wav` for `attention`, and `checkpoint.wav` for `checkpoint`. Use the manifest `text`, `tags`, and `useWhen` fields to decide which line represents which situation.
+The bundled 温柔 JK set contains nine mapped events: `task_done.wav` for `done`, `task_failed.wav` for `failed`, `need_input.wav` for `need_input`, `audioattention.wav` for `attention`, `checkpoint.wav` for `checkpoint`, `博士，我想...我们还需要再沟通一下.wav` for `clarify`, `博士，我已经明白你的想法了.wav` for `understood`, `博士，不要沮丧，我们再来试试.wav` for `encourage`, and `博士，你的想法太棒了。.wav` for `praise`. Use the manifest `text`, `tags`, and `useWhen` fields to decide which line represents which situation.
 
 ## Hook Behavior
 

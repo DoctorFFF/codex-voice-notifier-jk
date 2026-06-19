@@ -19,6 +19,18 @@
     },
     "checkpoint": {
       "description": "Codex produced a useful intermediate result."
+    },
+    "clarify": {
+      "description": "Codex wants to discuss or clarify the user's intent before continuing."
+    },
+    "understood": {
+      "description": "Codex acknowledges that it understands the user's idea or intent."
+    },
+    "encourage": {
+      "description": "Codex encourages the user after a setback or retry."
+    },
+    "praise": {
+      "description": "Codex positively acknowledges a strong idea from the user."
     }
   },
   "selection": {
@@ -143,6 +155,102 @@
       "enabled": true,
       "priority": 100,
       "sha256": "07238f0caf7869f4cb7d4d0b7e0c19017aa5af5ded9a4fc4f65e278ab2176431",
+      "bundled": true,
+      "createdAt": "2026-06-19T00:00:00Z"
+    },
+    {
+      "id": "clarify_jk",
+      "event": "clarify",
+      "file": "博士，我想...我们还需要再沟通一下.wav",
+      "bundleFile": "博士，我想...我们还需要再沟通一下.wav",
+      "text": "博士，我想...我们还需要再沟通一下",
+      "speaker": "温柔 JK",
+      "emotion": "thoughtful",
+      "style": "gentle-jk",
+      "tags": [
+        "clarify",
+        "discussion",
+        "jk",
+        "thoughtful",
+        "doctor",
+        "bundled"
+      ],
+      "useWhen": "Codex 需要和用户继续沟通、澄清需求、确认方向，或者当前问题不适合直接继续执行",
+      "enabled": true,
+      "priority": 100,
+      "sha256": "7ea1695187f0cd662ed1672ede5204482f874ef5e25669dd0db11c2ac29f8370",
+      "bundled": true,
+      "createdAt": "2026-06-19T00:00:00Z"
+    },
+    {
+      "id": "understood_jk",
+      "event": "understood",
+      "file": "博士，我已经明白你的想法了.wav",
+      "bundleFile": "博士，我已经明白你的想法了.wav",
+      "text": "博士，我已经明白你的想法了",
+      "speaker": "温柔 JK",
+      "emotion": "reassuring",
+      "style": "gentle-jk",
+      "tags": [
+        "understood",
+        "acknowledge",
+        "jk",
+        "reassuring",
+        "doctor",
+        "bundled"
+      ],
+      "useWhen": "Codex 理解了用户的思路、方案、偏好或刚刚澄清的需求",
+      "enabled": true,
+      "priority": 100,
+      "sha256": "812ff53e816e763af042ef82421b18fc66bd0d4e9361543d7bb5527c090b5a62",
+      "bundled": true,
+      "createdAt": "2026-06-19T00:00:00Z"
+    },
+    {
+      "id": "encourage_jk",
+      "event": "encourage",
+      "file": "博士，不要沮丧，我们再来试试.wav",
+      "bundleFile": "博士，不要沮丧，我们再来试试.wav",
+      "text": "博士，不要沮丧，我们再来试试",
+      "speaker": "温柔 JK",
+      "emotion": "encouraging",
+      "style": "gentle-jk",
+      "tags": [
+        "encourage",
+        "retry",
+        "jk",
+        "supportive",
+        "doctor",
+        "bundled"
+      ],
+      "useWhen": "任务遇到挫折但可以继续尝试，或用户表达沮丧、失败、重试意图",
+      "enabled": true,
+      "priority": 100,
+      "sha256": "6ebedd9623721f6ff4ffc02f668c2f45c000faf47736f387d6491b85e8ff3f53",
+      "bundled": true,
+      "createdAt": "2026-06-19T00:00:00Z"
+    },
+    {
+      "id": "praise_jk",
+      "event": "praise",
+      "file": "博士，你的想法太棒了。.wav",
+      "bundleFile": "博士，你的想法太棒了。.wav",
+      "text": "博士，你的想法太棒了。",
+      "speaker": "温柔 JK",
+      "emotion": "delighted",
+      "style": "gentle-jk",
+      "tags": [
+        "praise",
+        "idea",
+        "jk",
+        "delighted",
+        "doctor",
+        "bundled"
+      ],
+      "useWhen": "用户提出一个很好的想法、方向、方案或创意，需要积极肯定",
+      "enabled": true,
+      "priority": 100,
+      "sha256": "45b1042cc8cd373ca0d51d0658413ab3f792562b7a2ecea987f8b5766dbe1c7d",
       "bundled": true,
       "createdAt": "2026-06-19T00:00:00Z"
     }
